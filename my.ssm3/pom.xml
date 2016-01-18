@@ -31,7 +31,41 @@
       <artifactId>javax.inject</artifactId>
       <version>1</version>
     </dependency>
-        
+    
+    <!-- add begin for *.java in package cn.oss.ssm3.spitter.domain  -->
+    <dependency>
+    	<groupId>javax.persistence</groupId>
+    	<artifactId>persistence-api</artifactId>
+    	<version>1.0</version>	
+    </dependency>    
+    
+    <dependency>
+    	<groupId>commons-lang</groupId>
+    	<artifactId>commons-lang</artifactId>
+    	<version>2.4</version>	
+    </dependency>    
+    
+    <dependency>
+    	<groupId>javax.validation</groupId>
+    	<artifactId>validation-api</artifactId>
+    	<version>1.0.0.GA</version>	
+    </dependency>    
+    
+    <dependency>
+    	<groupId>org.codehaus.jackson</groupId>
+    	<artifactId>jackson-core-asl</artifactId>
+    	<version>1.6.3</version>	
+    </dependency>    
+	<!-- add end for *.java in package cn.oss.ssm3.spitter.domain  -->
+	
+	<!-- add begin for HomeControllerTest.java -->	
+    <dependency>
+    	<groupId>org.mockito</groupId>
+    	<artifactId>mockito-all</artifactId>
+    	<version>1.8.5</version>	
+    </dependency>    
+	<!-- add end for HomeControllerTest.java -->	
+	
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-core</artifactId>

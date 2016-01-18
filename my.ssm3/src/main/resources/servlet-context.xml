@@ -28,7 +28,7 @@
  	-->
  	
  	<!-- 扫描@Controller等@Component -->
- 	<context:component-scan base-package="cn.oss."></context:component-scan>
+ 	<context:component-scan base-package="cn.oss.ssm3.spitter.mvc"></context:component-scan>
  		
  	<!-- 能够将REST URL解析为请求映射的是DefaultAnnotationHandlerMapping这个类，它在启动时，
 			对Controller中所有标注了@RequestMapping注解的方法，都放到了一个HandlerMapping对象中，
@@ -36,8 +36,9 @@
 			Not Page Found警告信息。 -->
 
 	<!-- 当请求应用程序首页时，将执行/hello请求，还可以设定成redirect -->
-<!-- 	<mvc:view-controller path="/" view-name="forward:/hello" />
- -->
+	<!-- 	
+		<mvc:view-controller path="/" view-name="forward:/hello" />
+	 -->
  
 
 	
