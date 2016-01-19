@@ -20,6 +20,10 @@
 
 	<!-- Spring MVC 注解驱动 （@RequestMapping）-->
 	<mvc:annotation-driven/> <!-- 注册多个特性，包括JSR-303支持，以及DefaultAnnotationHandlerMapping -->
+ 	<!-- 能够将REST URL解析为请求映射的是DefaultAnnotationHandlerMapping这个类，它在启动时，
+			对Controller中所有标注了@RequestMapping注解的方法，都放到了一个HandlerMapping对象中，
+			当有请求时，就在这个对象中进行查找是否有与之匹配路径的处理方法，有则执行，没有就会输出一个
+			Not Page Found警告信息。 -->
 	
 	<!-- 这两个类用来启动基于Spring MVC的注解功能，将控制器与方法映射加入到容器中 -->
 	<!-- 
@@ -30,11 +34,19 @@
  	<!-- 扫描@Controller等@Component -->
  	<context:component-scan base-package="cn.oss.ssm3.spitter.mvc"></context:component-scan>
  		
- 	<!-- 能够将REST URL解析为请求映射的是DefaultAnnotationHandlerMapping这个类，它在启动时，
-			对Controller中所有标注了@RequestMapping注解的方法，都放到了一个HandlerMapping对象中，
-			当有请求时，就在这个对象中进行查找是否有与之匹配路径的处理方法，有则执行，没有就会输出一个
-			Not Page Found警告信息。 -->
-
+	<!-- 使用Tiles第一步：注册TilesViewResolver -->
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
+	<!-- 使用Tiles第二步：TilesViewResolver本身并不了解Tiles定义的任何事情，而是依靠
+			TilesConfigurer来记录这个信息 -->
+	<bean class=
+			"org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/views/**/views.xml</value>
+			</list>
+		</property>
+	</bean>		
+	
 	<!-- 当请求应用程序首页时，将执行/hello请求，还可以设定成redirect -->
 	<!-- 	
 		<mvc:view-controller path="/" view-name="forward:/hello" />
