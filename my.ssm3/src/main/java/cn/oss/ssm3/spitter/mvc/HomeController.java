@@ -27,7 +27,6 @@ public class HomeController {
     return "home";
   }
 
-
   //<start id="spittlesPerPage"/> 
   public static final int DEFAULT_SPITTLES_PER_PAGE = 25;
   

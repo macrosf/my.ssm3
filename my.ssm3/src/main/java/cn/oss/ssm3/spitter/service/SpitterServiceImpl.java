@@ -26,13 +26,13 @@ public class SpitterServiceImpl implements SpitterService {
 
   public void saveSpittle(Spittle spittle) {
     spittle.setWhen(new Date());
-    spitterDao.saveSpittle(spittle);
+    getSpitterDao().saveSpittle(spittle);
   }
 
   @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
   public List<Spittle> getRecentSpittles(int count) {
     List<Spittle> recentSpittles = 
-        spitterDao.getRecentSpittle();
+        getSpitterDao().getRecentSpittle();
     
     reverse(recentSpittles);
     
@@ -42,15 +42,15 @@ public class SpitterServiceImpl implements SpitterService {
   
   public void saveSpitter(Spitter spitter) {
     if(spitter.getId() == null) {
-      spitterDao.addSpitter(spitter);
+      getSpitterDao().addSpitter(spitter);
     } else {
-      spitterDao.saveSpitter(spitter);
+      getSpitterDao().saveSpitter(spitter);
     }
   }
   
   @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
   public Spitter getSpitter(long id) {
-    return spitterDao.getSpitterById(id);
+    return getSpitterDao().getSpitterById(id);
   }
 
   public void startFollowing(Spitter follower, Spitter followee) {
@@ -58,30 +58,39 @@ public class SpitterServiceImpl implements SpitterService {
   }
   
   public List<Spittle> getSpittlesForSpitter(Spitter spitter) {
-    return spitterDao.getSpittlesForSpitter(spitter);
+    return getSpitterDao().getSpittlesForSpitter(spitter);
   }
 
   public List<Spittle> getSpittlesForSpitter(String username) {
-    Spitter spitter = spitterDao.getSpitterByUsername(username);
+    Spitter spitter = getSpitterDao().getSpitterByUsername(username);
     return getSpittlesForSpitter(spitter);
   }
 
   public Spitter getSpitter(String username) {
-    return spitterDao.getSpitterByUsername(username);
+    return getSpitterDao().getSpitterByUsername(username);
   }
 
   public void deleteSpittle(long id) {
-    spitterDao.deleteSpittle(id);
+    getSpitterDao().deleteSpittle(id);
   }
   
   public List<Spitter> getAllSpitters() {
-    return spitterDao.findAllSpitters();
+    return getSpitterDao().findAllSpitters();
   }
 
   @Autowired
+private
   SpitterDao spitterDao;
 
   public Spittle getSpittleById(long id) {
-    return spitterDao.getSpittleById(id);
+    return getSpitterDao().getSpittleById(id);
   }
+
+public SpitterDao getSpitterDao() {
+	return spitterDao;
+}
+
+public void setSpitterDao(SpitterDao spitterDao) {
+	this.spitterDao = spitterDao;
+}
 }
