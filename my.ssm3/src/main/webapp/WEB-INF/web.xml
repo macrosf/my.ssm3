@@ -51,6 +51,7 @@
 		classpath:dataSource-context.xml
 		 -->
 		 classpath:service-context.xml
+		 classpath:persistence-context.xml
 	</param-value>
    </context-param>
 </web-app>

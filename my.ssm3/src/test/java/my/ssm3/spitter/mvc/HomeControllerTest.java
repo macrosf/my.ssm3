@@ -1,4 +1,4 @@
-package my.ssm3.mvc;
+package my.ssm3.spitter.mvc;
 
 
 import static java.util.Arrays.*;
