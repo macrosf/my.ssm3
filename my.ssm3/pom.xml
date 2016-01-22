@@ -25,6 +25,13 @@
 		<version>1.2.16</version>
 	</dependency>
    -->
+   <!-- mysql driver -->
+   <dependency>
+	  <groupId>mysql</groupId>
+	  <artifactId>mysql-connector-java</artifactId>
+	  <version>5.1.9</version>   
+   </dependency>
+   
   	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-api</artifactId>
@@ -85,6 +92,14 @@
     </dependency>    
 	<!-- add end for HomeControllerTest.java -->	
 	
+	<!-- add begin for validator -->
+	<dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-validator-annotation-processor</artifactId>
+	  <version>4.1.0.Final</version>
+	</dependency>
+	<!-- add end for validator -->
+	
 	<!-- add begin for SpitterServiceImplTest.java -->
 	<dependency>
 		<groupId>org.easymock</groupId>
@@ -92,6 +107,14 @@
 		<version>3.0</version>
 	</dependency>
 	<!-- add end for SpitterServiceImplTest.java -->
+	
+	<!-- add begin for class DateTime referenced in SimpleJdbcSupportSpitterDao-->
+	<dependency>
+		<groupId>joda-time</groupId>
+		<artifactId>joda-time</artifactId>
+		<version>1.6.2</version>
+	</dependency>
+	<!-- add end for class DateTime referenced in SimpleJdbcSupportSpitterDao-->
 	
 	<dependency>
 		<groupId>org.springframework</groupId>

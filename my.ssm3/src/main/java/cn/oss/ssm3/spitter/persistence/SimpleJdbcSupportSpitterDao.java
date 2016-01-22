@@ -2,7 +2,9 @@ package cn.oss.ssm3.spitter.persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+import org.joda.time.DateTime;
 
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
@@ -28,6 +30,15 @@ public class SimpleJdbcSupportSpitterDao
 
   private static final String SQL_SELECT_SPITTER_BY_ID = SQL_SELECT_SPITTER
           + " where id=?";
+
+  private static final String SQL_INSERT_SPITTLE = "" +
+  "insert into spittle (spitter_id, spittleText, postedTime) values (?, ?, ?)";
+
+  private static final String SQL_SELECT_SPITTLE = 
+  "select id, spitter_id, spittleText, postedTime from spittle";
+
+private static final String SQL_SELECT_RECENT_SPITTLE = 
+  SQL_SELECT_SPITTLE + " where postedTime > ? order by postedTime desc";
 
   //<start id="java_getSpitterById" /> 
   @SuppressWarnings("deprecation")
@@ -79,12 +90,29 @@ public Spitter getSpitterById(long id) {
   
   
   public List<Spittle> getRecentSpittle() {
-    // TODO Auto-generated method stub
-    return null;
+    DateTime dt = new DateTime().minusDays(1);
+    
+    return getSimpleJdbcTemplate().query(SQL_SELECT_RECENT_SPITTLE, 
+          new ParameterizedRowMapper<Spittle>() {
+      public Spittle mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Spittle spittle = new Spittle();
+        
+        spittle.setId(rs.getLong(1));
+        spittle.setSpitter(getSpitterById(rs.getLong(2)));
+        spittle.setText(rs.getString(3));
+        spittle.setWhen(rs.getDate(4));
+        
+        return spittle;
+      }
+    }, dt.toDate());
   }
   
   public void saveSpittle(Spittle spittle) {
-    // TODO Auto-generated method stub
+    getSimpleJdbcTemplate().update(SQL_INSERT_SPITTLE, new Object[] {
+        spittle.getSpitter().getId(),
+        spittle.getText(),
+        new Date()
+    });
     
   }
 
