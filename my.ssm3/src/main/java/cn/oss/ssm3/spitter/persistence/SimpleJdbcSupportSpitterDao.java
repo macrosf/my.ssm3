@@ -89,8 +89,9 @@ public Spitter getSpitterById(long id) {
   //<end id="java_queryForIdentity" />
   
   
-  public List<Spittle> getRecentSpittle() {
-    DateTime dt = new DateTime().minusDays(1);
+  @SuppressWarnings("deprecation")
+public List<Spittle> getRecentSpittle() {
+    DateTime dt = new DateTime().minusDays(10000);
     
     return getSimpleJdbcTemplate().query(SQL_SELECT_RECENT_SPITTLE, 
           new ParameterizedRowMapper<Spittle>() {

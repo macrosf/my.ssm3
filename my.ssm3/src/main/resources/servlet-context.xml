@@ -15,11 +15,10 @@
 	<!-- 属性mapping使用Ant风格的通配符，表明路径必须以/resources开始，而且也包括它的任意子路径；
 			属性location表明了要提供服务的文件位置。
 	 -->
-	<mvc:resources mapping="/resources/**" 
-								  location="/resources/"/>
+	<mvc:resources mapping="/resources/**"  location="WEB-INF/resources/"/>
 
 	<!-- Spring MVC 注解驱动 （@RequestMapping）-->
-	<mvc:annotation-driven/> <!-- 注册多个特性，包括JSR-303支持，以及DefaultAnnotationHandlerMapping -->
+	<mvc:annotation-driven/> <!-- 注册多个特性，包括JSR-303支持，以及替代DefaultAnnotationHandlerMapping声明 -->
  	<!-- 能够将REST URL解析为请求映射的是DefaultAnnotationHandlerMapping这个类，它在启动时，
 			对Controller中所有标注了@RequestMapping注解的方法，都放到了一个HandlerMapping对象中，
 			当有请求时，就在这个对象中进行查找是否有与之匹配路径的处理方法，有则执行，没有就会输出一个
