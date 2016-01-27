@@ -12,23 +12,25 @@ import cn.oss.ssm3.spitter.domain.Spitter;
 import cn.oss.ssm3.spitter.service.SpitterService;
 
 @Controller
-@RequestMapping("/spitter")	//root path
+//@RequestMapping("/spitter")	//root path
 public class SpitterController {
 
-	private final SpitterService spitterService;
+//	private final SpitterService spitterService;
 	
-	@Inject
-	public SpitterController(SpitterService spitterService) {
-		this.spitterService = spitterService;
-	}
+//	@Inject
+//	public SpitterController(SpitterService spitterService) {
+//		this.spitterService = spitterService;
+//	}
 	
 	//process GET request for URL /spitter/spittles
 	@RequestMapping(value="/spittles", method=RequestMethod.GET)
 	public String listSpittleForSpitter(
-			@RequestParam("spitter") String username, Model model) {
-		Spitter spitter = spitterService.getSpitter(username);
-		model.addAttribute(spitter);	//key="spitter"
-		model.addAttribute(spitterService.getSpittlesForSpitter(username)); //key=spittleList
-		return "spittles/list";
+			//@RequestParam("spitter") String username, 
+			Model model) {
+//		Spitter spitter = spitterService.getSpitter(username);
+//		model.addAttribute(spitter);	//key="spitter"
+//		model.addAttribute(spitterService.getSpittlesForSpitter(username)); //key=spittleList
+//		return "spittles/list";
+		return "home";
 	}
 }
