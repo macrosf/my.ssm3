@@ -30,7 +30,10 @@ public class SimpleJdbcSupportSpitterDao
 
   private static final String SQL_SELECT_SPITTER_BY_ID = SQL_SELECT_SPITTER
           + " where id=?";
-
+  
+  private static final String SQL_SELECT_SPITTER_BY_USERNAME = SQL_SELECT_SPITTER
+          + " where username=?";
+  
   private static final String SQL_INSERT_SPITTLE = "" +
   "insert into spittle (spitter_id, spittleText, postedTime) values (?, ?, ?)";
 
@@ -39,6 +42,9 @@ public class SimpleJdbcSupportSpitterDao
 
 private static final String SQL_SELECT_RECENT_SPITTLE = 
   SQL_SELECT_SPITTLE + " where postedTime > ? order by postedTime desc";
+
+private static final String SQL_SELECT_SPITTLE_BY_SPITTER_ID=
+	SQL_SELECT_SPITTLE+ " where spitter_id=?";
 
   //<start id="java_getSpitterById" /> 
   @SuppressWarnings("deprecation")
@@ -117,16 +123,41 @@ public List<Spittle> getRecentSpittle() {
     
   }
 
-  public List<Spittle> getSpittlesForSpitter(
+  @SuppressWarnings("deprecation")
+public List<Spittle> getSpittlesForSpitter(
           Spitter spitter) {
-    // TODO Auto-generated method stub
-    return null;
+	    return getSimpleJdbcTemplate().query(SQL_SELECT_SPITTLE_BY_SPITTER_ID, 
+	            new ParameterizedRowMapper<Spittle>() {
+	        public Spittle mapRow(ResultSet rs, int rowNum) throws SQLException {
+	          Spittle spittle = new Spittle();
+	          
+	          spittle.setId(rs.getLong(1));
+	          spittle.setSpitter(getSpitterById(rs.getLong(2)));
+	          spittle.setText(rs.getString(3));
+	          spittle.setWhen(rs.getDate(4));
+	          
+	          return spittle;
+	        }
+	      }, spitter.getId());
   }
   
 
-  public Spitter getSpitterByUsername(String username) {
-    // TODO Auto-generated method stub
-    return null;
+  @SuppressWarnings("deprecation")
+public Spitter getSpitterByUsername(String username) {
+	    return getSimpleJdbcTemplate().queryForObject(
+	            SQL_SELECT_SPITTER_BY_USERNAME,
+	        new ParameterizedRowMapper<Spitter>() {
+	          public Spitter mapRow(ResultSet rs, int rowNum) 
+	              throws SQLException {
+	            Spitter spitter = new Spitter();
+	            spitter.setId(rs.getLong(1));
+	            spitter.setUsername(rs.getString(2));
+	            spitter.setPassword(rs.getString(3));
+	            spitter.setFullName(rs.getString(4));
+	            spitter.setEmail(rs.getString(5));
+	            return spitter;
+	          }
+	        }, username);
   }
 
   public void deleteSpittle(long id) {
