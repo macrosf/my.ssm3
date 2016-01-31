@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cn.oss.ssm3.spitter.domain.Spitter;
 import cn.oss.ssm3.spitter.service.SpitterService;
 
 @Controller
@@ -21,14 +22,14 @@ public class SpitterController {
 		this.spitterService = spitterService;
 	}
 	
-	//process GET request for URL /spitter/spittles
+	//process GET request for URL /spitter/{username}
 	@RequestMapping(value="/{username}", method=RequestMethod.GET)
 	public String listSpittleForSpitter(
 			//@RequestParam("spitter") String username, 
 			@PathVariable String username,
 			Model model) {
-//		Spitter spitter = spitterService.getSpitter(username);
-//		model.addAttribute(spitter);	//key="spitter"
+		Spitter spitter = spitterService.getSpitter(username);
+		model.addAttribute(spitter);	//key="spitter"
 		model.addAttribute(spitterService.getSpittlesForSpitter(username)); //key=spittleList
 		return "spittles/list";
 //		return "home";
