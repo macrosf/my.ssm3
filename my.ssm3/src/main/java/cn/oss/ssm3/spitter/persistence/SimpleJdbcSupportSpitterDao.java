@@ -74,7 +74,8 @@ public Spitter getSpitterById(long id) {
             spitter.getFullName(),
             spitter.getEmail(),
             spitter.isUpdateByEmail());
-    spitter.setId(queryForIdentity());
+    //spitter.setId(queryForIdentity());
+    spitter.setId(spitter.getId());
   }
   //<end id="java_addSpitter" />
 
@@ -89,9 +90,9 @@ public Spitter getSpitterById(long id) {
   }
 
   //<start id="java_queryForIdentity" /> 
-  private long queryForIdentity() {
-    return getSimpleJdbcTemplate().queryForLong("call identity()");
-  }
+//  private long queryForIdentity() {
+//    return getSimpleJdbcTemplate().queryForLong("call identity()");
+//  }
   //<end id="java_queryForIdentity" />
   
   

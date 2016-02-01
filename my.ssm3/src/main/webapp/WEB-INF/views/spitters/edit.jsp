@@ -1,4 +1,4 @@
-<!-- page  -->
+<!-- page 203 -->
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
@@ -40,6 +40,12 @@
 					Send me email updates!</label>
 			</td>		
 		</tr>
+		<tr>
+			<th></th>
+			<td><input name="commit" type="submit"
+				value="I accept. Create my account." />
+			</td>
+		</tr>	
 	</table>	
 	</fieldset>
 </sf:form>
