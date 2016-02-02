@@ -1,11 +1,15 @@
 package cn.oss.ssm3.spitter.domain;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 //page 207
-public class Spitter {
+public class Spitter implements Serializable{
 	
+	private static final long serialVersionUID = 4617572903070984239L;
+
 	private Long id;
 	
 	@Size(min=3, max=20, message=

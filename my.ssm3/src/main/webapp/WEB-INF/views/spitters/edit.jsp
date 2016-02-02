@@ -3,19 +3,21 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
 <div>
-<h2>Create a free Sptter account</h2>
+<h2>Create a free Spitter account</h2>
 <sf:form method="POST" modelAttribute="spitter">
 	<fieldset>
 	<table cellspacing="0">
 		<tr>
 			<th><label for="user_full_name">Full name:</label></th>
 			<td><sf:input path="fullName" size="15" id="usr_full_name" /></td>
+				<sf:errors path="fullName" cssClass="error"/>
 		</tr>
 		<tr>
 			<th><label for="user_screen_name">Username:</label></th>
 			<td><sf:input path="username" size="15" maxlength="15"
 				id="user_screen_name" />
 				<small id="username_msg">No spaces, please.</small>
+				<sf:errors path="username" cssClasss="error"/>
 			</td>
 		</tr>
 		<tr>
