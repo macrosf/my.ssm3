@@ -1,5 +1,6 @@
 package cn.oss.ssm3.spitter.domain;
 
+/*
 import java.io.Serializable;
 
 import javax.validation.constraints.Pattern;
@@ -82,8 +83,8 @@ public class Spitter implements Serializable{
 	
 	
 }
+*/
 
-/*
 import static java.util.Arrays.*;
 import static javax.persistence.GenerationType.*;
 import static org.apache.commons.lang.builder.EqualsBuilder.*;
@@ -218,4 +219,3 @@ public class Spitter implements Serializable {
     return reflectionToString(this);
   }
 }
-*/

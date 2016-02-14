@@ -33,8 +33,8 @@
         <a href="${spitter_url}">  <!-- 展现Spittle属性 -->   <!--<co id="cp_spitter_properties"/>-->
           <c:out value="${spittle.spitter.username}" /></a>
           - <c:out value="${spittle.text}" /><br/>          
-         <small><fmt:formatDate value="${spittle.when}" 
-	                            pattern="hh:mma MMM d, yyyy" /></small>
+         <small><fmt:formatDate value="${spittle.when}" /></small>
+	                            <%-- pattern="hh:mma MMM d, yyyy" /></small> --%>
       </span></li>
     </c:forEach>
   </ol>
