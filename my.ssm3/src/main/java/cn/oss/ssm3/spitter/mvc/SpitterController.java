@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import cn.oss.ssm3.spitter.domain.Spitter;
 import cn.oss.ssm3.spitter.service.SpitterService;
@@ -50,12 +52,24 @@ public class SpitterController {
 	//page 205
 	@RequestMapping(method=RequestMethod.POST)
 	public String addSpitterFromForm(@Valid Spitter spitter,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,
+			@RequestParam(value="image", required=false) //接收文件上传
+				MultipartFile image) {
+		
 		if (bindingResult.hasErrors()) {
 			return "spitters/edit";
 		}
 		spitterService.saveSpitter(spitter);
 		
+		try{
+			if(!image.isEmpty()) {
+				validateImage(image);
+				saveImage(spitter.getId()+".jpg", image);	//保存图片文件
+			}
+		} catch(ImageUploadException e) {
+			bindingResult.reject(e.getMessage());
+			return "spitters/edit";
+		}
 		return "redirect:/spitters/" + spitter.getUsername(); 
 	}
 }
