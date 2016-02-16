@@ -11,7 +11,6 @@
 		<tr>
 			<th><label for="user_full_name">Full name:</label></th>
 			<td><sf:input path="fullName" size="15" id="usr_full_name" /></td>
-				<%-- <sf:errors path="fullName" delimiter="," cssClass="error"/> --%>
 		</tr>
 		<tr>
 			<th></th>
@@ -23,7 +22,6 @@
 			<td><sf:input path="username" size="15" maxlength="15"
 				id="user_screen_name" />
 				<small id="username_msg">No spaces, please.</small>
-				<%-- <sf:errors path="username" cssClass="error"/> --%>
 			</td>
 		</tr>
 		<tr>
@@ -36,7 +34,6 @@
 			<td><sf:password path="password" size="30"
 					showPassword="true" id="user_password"/>
 				<small>6 characters or more (be tricky!)</small>
-				<%-- <sf:errors path="password" cssClass="error"/> --%>
 			</td>	
 		</tr>	
 		<tr>
@@ -48,7 +45,6 @@
 			<th><label for="user_mail">Email Address:</label></th>
 			<td><sf:input path="email" size="30" id="user_mail"/>
 				<small>In case you forget something</small>
-				<%-- <sf:errors path="email" cssClass="error" /> --%>
 			</td>
 		</tr>
 		<tr>
