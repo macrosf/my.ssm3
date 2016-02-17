@@ -1,11 +1,8 @@
 package cn.oss.ssm3.spitter.mvc;
 
-import java.io.File;
-
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -79,10 +76,13 @@ public class SpitterController {
 
 	private void saveImage(String filename, MultipartFile image) 
 			throws ImageUploadException {
-		try {
-			File file = new File(webRootPath + "/resources/" + filename);
-			FileUtils.writeByteArraryToFile(file, image.getBytes());
-		}
+		//refer to page 213
+//		try {
+//			File file = new File(webRootPath + "/resources/" + filename);
+//			FileUtils.writeByteArraryToFile(file, image.getBytes());
+//		} catch (IOException e) {
+//			throw new ImageUploadException("Unable to save image", e)
+//		}
 		
 	}
 
@@ -92,4 +92,5 @@ public class SpitterController {
 		}
 		
 	}
+	
 }
