@@ -1,8 +1,11 @@
 package cn.oss.ssm3.spitter.mvc;
 
+import java.io.File;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -70,6 +73,23 @@ public class SpitterController {
 			bindingResult.reject(e.getMessage());
 			return "spitters/edit";
 		}
+		
 		return "redirect:/spitters/" + spitter.getUsername(); 
+	}
+
+	private void saveImage(String filename, MultipartFile image) 
+			throws ImageUploadException {
+		try {
+			File file = new File(webRootPath + "/resources/" + filename);
+			FileUtils.writeByteArraryToFile(file, image.getBytes());
+		}
+		
+	}
+
+	private void validateImage(MultipartFile image) {
+		if (!image.getContentType().equals("image/jpeg")) {
+			throw new ImageUploadException("Only JPG images accepted");
+		}
+		
 	}
 }
