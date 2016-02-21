@@ -5,8 +5,8 @@
 <div>
      
   <!--<start id="securityAuthorizeTag_access"/>--> 
-	<sec:authorize access="hasRole('ROLE_SPITTER')">
-	<!--<co id="co_renderForRoleSpitter"/>-->
+<%--  	<sec:authorize access="hasRole('ROLE_SPITTER')">
+	
     <s:url value="/spittles" var="spittle_url" />
 	  <sf:form modelAttribute="spittle" 
 	             method="POST" 
@@ -23,5 +23,5 @@
 	    </div>           
 	  </sf:form>
 	</sec:authorize>
-  <!--<end id="securityAuthorizeTag_access"/>--> 
+ --%>  <!--<end id="securityAuthorizeTag_access"/>--> 
 </div>

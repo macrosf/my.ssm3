@@ -1,0 +1,43 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+	<!-- 不带任何前缀的安装配置元素置于此处 -->
+
+	<http auto-config="true" use-expressions="false">
+ 		<intercept-url pattern="/spitters**" access="ROLE_SPITTER"/> 
+ 		
+ 		<!-- 如果不使用<form-login>标签，会使用Spring Security自带的login画面 
+ 			 login成功后会转入login之前的画面（用户名/密码和userService bean里面定义的匹配就算成功）
+ 		-->
+ 		
+ 		<!-- 如果使用<form-login>标签，需要指定处理login逻辑的Controller【login-page="/login"】 
+ 			 Controller里面如何取得用户名/密码，以及验证成功后跳转login之前的画面还没研究出来。
+ 			 另外，书上的“login-processing-url”貌似可以不用写。
+ 			 
+ 			<form-login login-processing-url "/static/j_spring_security_check"
+ 				... />
+ 		-->
+ 		<!-- 
+		<form-login 
+			login-page="/login"
+			authentication-failure-url="/login?login_error=t"/>
+		 -->	
+	</http>
+	
+ 	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userService" />
+	</authentication-manager>
+
+	<user-service id="userService">
+		<user name="habuma" password="letmein" 
+		               authorities="ROLE_SPITTER,ROLE_ADMIN"/>
+		<user name="twoqubed" password="longhorns" 
+		               authorities="ROLE_SPITTER"/>
+		<user name="admin" password="admin" 
+		               authorities="ROLE_ADMIN"/>
+	</user-service>
+</beans:beans>

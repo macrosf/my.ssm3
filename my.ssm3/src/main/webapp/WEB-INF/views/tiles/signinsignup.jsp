@@ -1,7 +1,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<div>        
+<div>
+<%--        
   <sec:authorize access="!isAuthenticated()">
 			
 		<div class="msg">
@@ -37,7 +38,7 @@
 		</div>
 	</sec:authorize>
 	
-  <sec:authorize access="isAuthenticated()">
+   <sec:authorize access="isAuthenticated()">
     <s:url value="/resources/images" var="images_url" />
 	  <img src="${images_url}/spitter_me.jpg" align="middle"/>
 	  <span><sec:authentication 
@@ -50,5 +51,5 @@
       <s:url value="/admin" var="admin_url" />
 	    <br/><a href="${admin_url}">Admin</a>
 	  </sec:authorize>
-	</sec:authorize>
+	</sec:authorize> --%>
 </div>
