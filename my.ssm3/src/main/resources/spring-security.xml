@@ -8,8 +8,10 @@
 	<!-- 不带任何前缀的安装配置元素置于此处 -->
 
 	<http auto-config="true" use-expressions="false">
- 		<intercept-url pattern="/spitters**" access="ROLE_SPITTER"/> 
- 		
+ 		<!-- 注意范围晓得URL路径要放在前面，就比如"/admin/**"要放在"/**"前面 -->
+ 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+ 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+
  		<!-- 如果不使用<form-login>标签，会使用Spring Security自带的login画面 
  			 login成功后会转入login之前的画面（用户名/密码和userService bean里面定义的匹配就算成功）
  		-->
@@ -17,17 +19,21 @@
  		<!-- 如果使用<form-login>标签，需要指定处理login逻辑的Controller【login-page="/login"】 
  			 Controller里面如何取得用户名/密码，以及验证成功后跳转login之前的画面还没研究出来。
  			 另外，书上的“login-processing-url”貌似可以不用写。
- 			 
- 			<form-login login-processing-url "/static/j_spring_security_check"
- 				... />
- 		-->
- 		<!-- 
+
 		<form-login 
+			login-processing-url "/static/j_spring_security_check" //<-这句话
 			login-page="/login"
 			authentication-failure-url="/login?login_error=t"/>
 		 -->	
+		 <logout logout-url="/static/j_spring_security_logout" />
 	</http>
-	
+
+	<!-- 如果<http>的 "use-expression"属性为true，那么上面的intercept-url也可以像下面这样来写 -->
+<!-- 	<http auto-config="true" use-expressions="true" >
+ 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+ 		<intercept-url pattern="/**" access="hasRole('ROLE_SPITTER')" /> 
+	</http>	
+ -->
  	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="userService" />
 	</authentication-manager>

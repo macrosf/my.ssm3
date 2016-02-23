@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-<%--        
+        
   <sec:authorize access="!isAuthenticated()">
 			
 		<div class="msg">
@@ -51,5 +51,5 @@
       <s:url value="/admin" var="admin_url" />
 	    <br/><a href="${admin_url}">Admin</a>
 	  </sec:authorize>
-	</sec:authorize> --%>
+	</sec:authorize> 
 </div>
